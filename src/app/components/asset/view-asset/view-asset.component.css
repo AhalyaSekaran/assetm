@@ -1,0 +1,8 @@
+.cancel{
+    background-color: rgb(195, 30, 30);
+    color: white;
+}
+.cancel:hover{
+    background-color: rgb(225, 93, 93);
+    color: rgb(0, 0, 0);
+}

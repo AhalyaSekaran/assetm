@@ -1,0 +1,124 @@
+<div class="mainBar overflow-hidden">
+  <div class="topBar">
+    <div class="grid grid-cols-3 gap-4">
+
+      <div
+        class="customHeight w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-md duration-300 hover:scale-105 hover:shadow-xl">
+        <google-chart  #chart [type]="type" [options]="myOptions"  [data]="dataForChennai" [columns]="columnNames" [width]="width" [height]="height">
+        </google-chart>
+        <h1 class="mt-2 text-center text-2xl font-bold text-gray-500">Laptop:{{assetCountForChennai.unAssignedLaptopCount}}/{{assetCountForChennai.laptopCount}}</h1>
+        <h1 class="mt-2 text-center text-2xl font-bold text-gray-500">Chennai</h1>
+        <h3 class="my-4 text-center text-sm text-gray-500">Remaining Assets </h3>
+      </div>
+
+      <div
+        class="customHeight w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-md duration-300 hover:scale-105 hover:shadow-xl">
+        <google-chart  #chart [options]="myOptions" [type]="type" [data]="dataForPune" [columns]="columnNames" [width]="width" [height]="height">
+        </google-chart>
+        <h1 class="mt-2 text-center text-2xl font-bold text-gray-500">Laptop:{{assetCountForPune.unAssignedLaptopCount}}/{{assetCountForPune.laptopCount}}</h1>
+
+        <h1 class="mt-2 text-center text-2xl font-bold text-gray-500">Pune</h1>
+        <h3 class="my-4 text-center text-sm text-gray-500">Remaining Assets </h3>
+      </div>
+
+
+      <div
+        class="customHeight w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-md duration-300 hover:scale-105 hover:shadow-xl ">
+        <google-chart  #chart [type]="type" [options]="myOptions"  [data]="dataForTotal" [columns]="columnNames" [width]="width" [height]="height">
+        </google-chart>
+        <h1 class="mt-2 text-center text-2xl font-bold text-gray-500">Laptop:{{assetCountForChennai.unAssignedLaptopCount+assetCountForPune.unAssignedLaptopCount}}/{{assetCountForChennai.laptopCount+assetCountForPune.laptopCount}}</h1>
+
+        <h1 class="mt-2 text-center text-2xl font-bold text-gray-500">Total</h1>
+        <h3 class="my-4 text-center text-sm text-gray-500">Remaining Assets</h3>
+      </div>
+      <!-- end of cards -->
+    </div>
+    <div class="downBar m-4">
+      <!-- component -->
+      <!-- This is an example component -->
+
+
+      <div class="inline-block min-w-full align-middle">
+        <div class="overflow-hidden ">
+          <table class="min-w-full divide-y divide-gray-200 table-fixed">
+            <thead class="bg-gray-100 ">
+              <tr>
+                <th scope="col"
+                  class="p-4 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase ">
+                  Id
+                </th>
+                <th scope="col"
+                  class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700   uppercase">
+                  Asset Name
+                </th>
+                <th scope="col"
+                  class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700   uppercase">
+                  Serial Number
+                </th>
+                <th scope="col"
+                  class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase ">
+                  Location
+                </th>
+                <th scope="col"
+                  class="py-3 px-6 text-xs font-medium tracking-wider  text-lg-center text-gray-700 uppercase ">
+                  Type
+                </th>
+                <th scope="col"
+                  class="py-3 px-6 text-xs font-medium tracking-wider  text-lg-center text-gray-700 uppercase ">
+                  Modl
+                </th>
+
+                <th scope="col"
+                  class="py-3 px-6 text-xs font-medium tracking-wider  text-lg-center text-gray-700 uppercase ">
+                  Assign
+                </th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <tr class="hover:bg-gray-100  uppercase"
+                *ngFor="let unAsset of unAssigned; let i = index">
+                <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">{{i + 1}}</td>
+                <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
+                  {{unAsset.assetName}}</td>
+                <td class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap ">
+                  {{unAsset.serialNumber}} </td>
+                <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
+                  {{unAsset.location}}</td>
+                <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
+                  {{unAsset.type}}</td>
+                <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
+                  {{unAsset.modelName}}</td>
+                <td class="py-4 px-6 text-sm font-medium text-center whitespace-nowrap">
+                  <a  class="text-blue-600 dark:text-blue-500 hover:underline">
+                    <button (click)="assign(unAsset)"
+                      class="bg-gray-300 text-blue-700 hover:text-green-700 font-semibold py-2 px-2 rounded-2 inline-flex items-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-bookmark-plus w-5 h-5" viewBox="0 0 16 16">
+                        <path
+                          d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
+                        <path
+                          d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4z" />
+                      </svg>
+                      Assign Asset
+                    </button>
+                  </a>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+          <!-- bouncing balls -->
+          <div class="bouncer" *ngIf="loader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

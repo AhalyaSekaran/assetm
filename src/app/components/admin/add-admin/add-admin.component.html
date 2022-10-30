@@ -1,0 +1,110 @@
+<h1 class="text-center">Add Admin</h1>
+  <mat-stepper [linear]="true">
+    <mat-step label="Step 1" [stepControl]="loginGroup" state="empid">
+     <form class="mt-4" [formGroup]="loginGroup">
+        <ng-template matStepLabel>Fill Emp Id</ng-template>
+        <input matInput autofocus  [(ngModel)]="adminId" class="block w-50 bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" formControlName="empId" type="text"   />
+        <div *ngIf="empId.invalid && empId.touched || isOk">
+          <span class="error" *ngIf="empId.errors?.required">Emp Id is required</span>
+          <span class="error" *ngIf="empId.errors?.pattern">Emp id should like this V00304</span>
+      </div>
+        <div>
+            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" (click)="findEmp()"  matStepperNext> Next &nbsp; <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+     </form>
+
+    </mat-step>
+    <mat-step label="Create Password" [stepControl]="registerGroup" state="formdata">
+        <form [formGroup]="registerGroup" class="mt-3">
+            <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                    First Name
+                  </label>
+                  <input  value={{emp.firstName}}  type="text"  class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" readonly >
+               </div>
+               <div class="w-full md:w-1/2 px-3">
+                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+                  LastName
+                 </label>
+                 <input  value={{emp.lastName}} type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" readonly >
+
+                </div>
+             </div>
+
+             <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                    Email
+                  </label>
+                  <input  value={{emp.mail}} type="text"  class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name"  readonly>
+
+               </div>
+               <div class="w-full md:w-1/2 px-3">
+                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+                  Mobile
+                 </label>
+                 <input  value={{emp.mobile}} type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" readonly>
+
+                </div>
+
+             </div>
+             <!-- <div class="flex flex-wrap -mx-3 "> -->
+              <div class="flex flex-wrap -mx-3 mb-6">
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+              Access
+     </label>
+                  <select formControlName="access" [(ngModel)]="emp.access" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" id="grid-state">
+      <option value="Read">Read</option>
+      <option value="ReadWrite">ReadWrite</option>
+    </select>
+                  <!-- <div *ngIf="access.invalid && access.touched || submitted">
+                <span class="error" *ngIf="access.errors?.required">Access is required</span>
+            </div> -->
+                  <div *ngIf="registerGroup.get('access').hasError('required')">
+                      access is required
+                  </div>
+              </div>
+
+
+            <div class="flex flex-wrap -mx-3 ">
+                <!-- <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0"> -->
+                  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                    Password
+                  </label>
+                  <input formControlName="password" [(ngModel)]="passwd" type="text"  class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="password"  >
+                  <div class="error" *ngIf="registerGroup.get('password').invalid && (registerGroup.get('password').touched || registerGroup.get('password').dirty) || isReg">
+                    <div *ngIf="registerGroup.get('password').hasError('required')">
+                      password is required
+                    </div>
+                    <div class="error" *ngIf="registerGroup.get('password').hasError('passwordStrength')">
+                     {{registerGroup.get('password').errors['passwordStrength']}}
+                    </div>
+                    </div>
+               </div>
+             </div>
+
+                <button class="bg-blue-500 hover:bg-blue-700 mt-2 float-left text-white font-bold py-2 px-4 rounded-full" matStepperPrevious>
+                    <i class="fa-solid fa-arrow-left"></i>&nbsp; Back
+                </button>
+                <button (click)="regAdmin()" class="bg-green-500 hover:bg-green-700 mt-2 float-right text-white font-bold py-2 px-4 rounded-full">
+                    Register
+                </button>
+
+        </form>
+
+    </mat-step>
+
+
+    <!-- Icon overrides. -->
+    <ng-template matStepperIcon="empid">
+      <mat-icon>fingerprint</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="formdata">
+      <mat-icon>verified_user</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="comp">
+        <mat-icon>verified</mat-icon>
+      </ng-template>
+  </mat-stepper>

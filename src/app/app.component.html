@@ -1,0 +1,6 @@
+
+  
+
+<app-login *ngIf="!authServ.checkLogin()"></app-login>
+<app-sidenav *ngIf="authServ.checkLogin()"></app-sidenav>
+<lib-ng-toast></lib-ng-toast>

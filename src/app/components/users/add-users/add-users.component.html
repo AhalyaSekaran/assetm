@@ -1,0 +1,198 @@
+<h1 mat-dialog-title class="text-center uppercase">Add Employee</h1>
+<mat-dialog-content class="mat-typography">
+  <form class="w-full max-w-lg overflow-auto" [formGroup]="newUserGroup">
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+  Emp Id
+</label>
+        <input [(ngModel)]="newUser.empId" formControlName="empId" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Emp Id"
+        />
+        <div *ngIf="(empId.invalid && empId.touched) || submitted">
+            <span class="error" *ngIf="empId.errors?.required">Emp Id is required</span
+  >
+  <span class="error" *ngIf="empId.errors?.pattern"
+    >Invalid Employee Id</span>
+        </div>
+    </div>
+
+       <div class="w-full md:w-1/2 px-3">
+        <label
+          class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+          for="grid-last-name"
+        >
+          Mail
+        </label>
+        <input
+          [(ngModel)]="newUser.mail"
+          formControlName="mail"
+          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="grid-last-name"
+          type="email"
+          placeholder="Email"
+        />
+        <div *ngIf="(mail.invalid && mail.touched) || submitted">
+          <span class="error" *ngIf="mail.errors?.required"
+            >Email is required</span
+          >
+          <span class="error" *ngIf="mail.errors?.pattern"
+            >Invalid Email Id</span
+          >
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <label
+          class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+          for="grid-first-name"
+        >
+          First Name
+        </label>
+        <input
+          [(ngModel)]="newUser.firstName"
+          formControlName="firstName"
+          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+          id="grid-first-name"
+          type="text"
+          placeholder="Firstname"
+        />
+        <div *ngIf="(firstName.invalid && firstName.touched) || submitted">
+          <span class="error" *ngIf="firstName.errors?.required"
+            >First name is required</span
+          >
+          <span class="error" *ngIf="firstName.errors?.pattern"
+            >First name must be contain alphabets only</span
+          >
+        </div>
+      </div>
+      <div class="w-full md:w-1/2 px-3">
+        <label
+          class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+          for="grid-last-name"
+        >
+          last Name
+        </label>
+        <input
+          [(ngModel)]="newUser.lastName"
+          formControlName="lastName"
+          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="grid-last-name"
+          type="text"
+          placeholder="Lastname"
+        />
+        <div *ngIf="(lastName.invalid && lastName.touched) || submitted">
+          <span class="error" *ngIf="lastName.errors?.required"
+            >Last name is required</span
+          >
+          <span class="error" *ngIf="lastName.errors?.pattern"
+            >Last name must be contain alphabets only</span
+          >
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="w-full md:w-1/2 px-3">
+        <label
+          class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+          for="grid-last-name"
+        >
+          Mobile Number
+        </label>
+        <input
+          [(ngModel)]="newUser.mobile"
+          formControlName="mobile"
+          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="grid-last-name"
+          type="number"
+          minlength="10"
+          maxlength="10"
+          placeholder="Mobile number"
+        />
+        <div *ngIf="(mobile.invalid && mobile.touched) || submitted">
+          <span class="error" *ngIf="mobile.errors?.pattern"
+            >Number must be 10 numerics</span
+          >
+          <span class="error" *ngIf="mobile.errors?.required"
+            >Mobile number is required</span
+          >
+        </div>
+      </div>
+      <div class="w-full md:w-1/2 px-3">
+        <label
+          class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+          for="grid-last-name"
+        >
+          Designation
+        </label>
+        <input
+          [(ngModel)]="newUser.designation"
+          formControlName="designation"
+          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="grid-last-name"
+          type="text"
+          placeholder="Designation"
+        />
+        <div *ngIf="(designation.invalid && designation.touched) || submitted">
+          <span class="error" *ngIf="designation.errors?.required"
+            >Designation is required</span
+          > <span class="error" *ngIf="designation.errors?.pattern"
+            >Designation must contain Alphabests <br> Only with min 3 characters</span
+          >
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <label
+          class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+          for="grid-first-name">
+          Location
+        </label>
+        <select
+          [(ngModel)]="newUser.location"
+          formControlName="location"
+          class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="grid-state"
+          placeholder="Role"
+        >
+          <option value="chennai">Chennai</option>
+          <option value="pune">Pune</option>
+        </select>
+      <div *ngIf="(location.invalid && location.touched) || submitted">
+        <span class="error" *ngIf="location.errors?.required"
+          >location is required</span>
+      </div>
+      </div>
+      <div class="w-full md:w-1/2 px-3">
+        <label
+          class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+          for="grid-last-name"
+        >
+          Department
+        </label>
+        <input
+          [(ngModel)]="newUser.department"
+          formControlName="department"
+          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="grid-last-name"
+          type="text"
+          placeholder="Department"
+        />
+        <div *ngIf="(department.invalid && department.touched) || submitted">
+          <span class="error" *ngIf="department.errors?.required"
+            >Department is required</span
+          >
+          <span class="error" *ngIf="department.errors?.pattern"
+          >Department  must contain Alphabests <br> Only with min 3 characters</span
+        >
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-wrap -mx-3 mb-6"></div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button class="btn btn-success" (click)="addUser()">Add User</button>
+  <button class="btn btn-danger cancel" matDialogClose>Cancel</button>
+</mat-dialog-actions>

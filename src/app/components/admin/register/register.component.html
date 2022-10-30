@@ -1,0 +1,85 @@
+<mat-dialog-content class="mat-typography">
+<form [formGroup]="newAdmin">
+  <h1 class="text-center uppercase">Add Admin</h1>
+  <div class="flex flex-wrap -mx-3 mb-6">
+    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+         Name
+      </label>
+      <input formControlName="name" [(ngModel)]="fullName" type="text"   class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text"  >
+       <div *ngIf="name.invalid && name.touched || submitted">
+                <span class="error" *ngIf="name.errors?.required">Name is required</span>
+                <span class="error" *ngIf="name.errors?.pattern">Name must be  contain alphabets only</span>
+            </div>
+    </div>
+    <div class="w-full md:w-1/2 px-3">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+        Emp Id
+      </label>
+      <input formControlName="empId"  [(ngModel)]="register.empId" type="text"  class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" >
+      <div *ngIf="empId.invalid && empId.touched || submitted">
+        <span class="error" *ngIf="empId.errors?.required">Emp id is required</span>
+        <span class="error" *ngIf="empId.errors?.pattern">Emp id must be like this <b>V00304</b></span>
+    </div>
+    </div>
+  </div>
+  <div class="flex flex-wrap -mx-3 mb-6">
+     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+         Email Id
+       </label>
+       <input formControlName="email" [(ngModel)]="register.mail" type="email"  class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="email" >
+       <div *ngIf="email.invalid && email.touched || submitted">
+        <span class="error" *ngIf="email.errors?.required">Email is required</span>
+        <span class="error" *ngIf="email.errors?.pattern">Email must be in proper format</span>
+    </div>
+      </div>
+     <div class="w-full md:w-1/2 px-3">
+       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+         Location
+       </label>
+       <select formControlName="location" [(ngModel)]="register.location" type="text"  class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+        <option value="chennai">Chennai</option>
+        <option value="pune">Pune</option>
+      </select>
+      <div *ngIf="location.invalid && location.touched || submitted">
+        <span class="error" *ngIf="location.errors?.required">Location is required</span>
+    </div>
+      </div>
+    </div>
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+          Password
+        </label>
+        <input formControlName="password" [(ngModel)]="register.password" type="text"  class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="password"  >
+        <div class="error" *ngIf="newAdmin.get('password').invalid && (newAdmin.get('password').touched || newAdmin.get('password').dirty)">
+          <div *ngIf="newAdmin.get('password').hasError('required')">
+            password is required
+          </div>
+          <div class="error" *ngIf="newAdmin.get('password').hasError('passwordStrength')">
+           {{newAdmin.get('password').errors['passwordStrength']}}
+          </div>
+          </div>
+     </div>
+     <div class="w-full md:w-1/2 px-3">
+       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+         Confirm Password
+       </label>
+       <input formControlName="confirmPassword" [(ngModel)]="confirmPasswd" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="password" >
+       <div *ngIf="confirmPassword.invalid && location.touched || submitted">
+        <span class="error" *ngIf="confirmPassword.errors?.required">Password is required</span>
+        <span class="error" *ngIf="confirmPassword.errors?.pattern">Password and Confirm password must be same</span>
+    </div>
+      </div>
+   </div>
+
+
+</form>
+<br>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button class="btn-success" (click)="addAdmin()" >Add Admin</button>
+  <button class="btn-danger"   matDialogClose>Cancel</button>
+</mat-dialog-actions>
+

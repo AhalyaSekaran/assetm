@@ -1,0 +1,56 @@
+
+<mat-dialog-content class="w-full max-w-lg overflow-hidden">
+
+    <h1 matDialogTitle class="text-center uppercase">Assign Asset</h1>
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+          Asset Name
+        </label>
+        <input readonly [(ngModel)]="assetData.assetName" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Laptop" >
+      </div>
+      <div class="w-full md:w-1/2 px-3">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+          Serial Number
+        </label>
+        <input readonly [(ngModel)]="assetData.serialNumber" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Lsbhb1123123">
+      </div>
+    </div>
+    <div class="flex flex-wrap -mx-3 mb-6">
+       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+           Assigned By
+         </label>
+         <input readonly  [(ngModel)]="assetData.assignedBy"
+         class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white uppercase"
+         id="grid-first-name" type="text" >
+       </div>
+       <div class="w-full md:w-1/2 px-3">
+         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+           Assigned To
+         </label>
+         <input  [(ngModel)]="assetData.empId" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Employee Id">
+       </div>
+     </div>
+     <div class="flex flex-wrap -mx-3 mb-6">
+       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+           Location
+         </label>
+         <select [(ngModel)]="assetData.location" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+          <option>Chennai</option>
+          <option>Pune</option>
+        </select>
+       </div>
+       <div class="w-full md:w-1/2 px-3">
+         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+           Assigned Date
+         </label>
+         <input [(ngModel)]="assetData.assignedDate" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="Date" >
+       </div>
+     </div>
+</mat-dialog-content>
+<mat-dialog-actions >
+  <button class="btn btn-success" (click)="assign()">Assign</button>
+<button class="btn btn-danger cancel"  (click)="cancel()" matDialogClose>Cancel</button>
+</mat-dialog-actions>

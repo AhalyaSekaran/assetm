@@ -1,0 +1,24 @@
+Button{
+   padding: 8px;
+   border-radius: 8px;
+   -webkit-border-radius: 8px;
+   -moz-border-radius: 8px;
+   -ms-border-radius: 8px;
+   -o-border-radius: 8px;
+   background-color: aquamarine;
+}
+.btn-success{
+    background-color:#118016;
+}
+.btn-danger{
+    background-color:#f72500;
+    margin-left: 70%;
+}
+.validators{
+  position: relative;
+  display: block;
+}
+.action-btns{
+  position: fixed ;
+  display: inline;
+}

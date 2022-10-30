@@ -1,0 +1,11 @@
+tr:hover
+{
+    background-color: rgba(181, 177, 171,0.5);
+}
+.fas{
+    font-size: large;
+    color: rgb(0, 0, 0);
+}
+.deletIcon{
+display: hidden;    
+}

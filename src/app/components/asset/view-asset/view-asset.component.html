@@ -1,0 +1,89 @@
+<mat-dialog-content>
+    <form class="w-full max-w-lg">
+      <h1 class="text-center uppercase">View Asset</h1>
+      <div class="flex flex-wrap -mx-3 mb-6">
+        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+            Asset Name
+          </label>
+          <input type="text" [(ngModel)]=assetDto.assetName [ngModelOptions]="{standalone: true}"
+          class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="grid-state" readonly>
+
+        </div>
+        <div class="w-full md:w-1/2 px-3">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+            Serial Number
+          </label>
+          <input [(ngModel)]="assetDto.serialNumber" [ngModelOptions]="{standalone: true}"
+            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="grid-last-name" type="text" placeholder="Lsbhb1123123" readonly>
+        </div>
+      </div>
+      <div class="flex flex-wrap -mx-3 mb-6">
+        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+            Added By
+          </label>
+          <input [(ngModel)]="assetDto.addedBy" [ngModelOptions]="{standalone: true}"
+            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            id="grid-first-name" type="text" placeholder="Admin" readonly>
+        </div>
+        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+            Location
+          </label>
+          <input type="text" [(ngModel)]="assetDto.location" [ngModelOptions]="{standalone: true}"
+            class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="grid-state" readonly>
+
+        </div>
+      </div>
+      <div class="flex flex-wrap -mx-3 mb-6">
+
+        <div class="w-full md:w-1/2 px-3">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+            Purchase Date
+          </label>
+          <input [(ngModel)]="assetDto.purchaseDate" [ngModelOptions]="{standalone: true}"
+            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="grid-last-name" type="text" placeholder="Employee Id" readonly>
+        </div>
+        <div class="w-full md:w-1/2 px-3">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+            Warrenty Date
+          </label>
+          <input [(ngModel)]="assetDto.warrantyDate" [ngModelOptions]="{standalone: true}"
+            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="grid-last-name" type="text" readonly>
+        </div>
+      </div>
+      <div class="flex flex-wrap -mx-3 mb-6">
+        <div class="w-full md:w-1/2 px-3">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+            Model Name
+          </label>
+          <input [(ngModel)]="assetDto.modelName" [ngModelOptions]="{standalone: true}"
+            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="grid-last-name" type="text" placeholder="Model Name" readonly>
+        </div>
+        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+            Operation System
+          </label>
+          <input type="text" [(ngModel)]="assetDto.operatingSystem" [ngModelOptions]="{standalone: true}" [disabled]="assetDto.assetName=='laptop'? false : true"
+            class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="grid-state" readonly>
+
+
+        </div>
+      </div>
+
+    </form>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+
+      <button mat-dialog-close="true" class="btn btn-danger cancel" >Cancel</button>
+    </mat-dialog-actions>
+
+

@@ -1,0 +1,4 @@
+.customHeight{
+    z-index: 1;
+}
+svg > g > g.google-visualization-tooltip { pointer-events: none }

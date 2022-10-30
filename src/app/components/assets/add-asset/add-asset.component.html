@@ -1,0 +1,119 @@
+<mat-dialog-content>
+<form class="w-full max-w-lg" [formGroup]="newAssetGroup">
+  <h1 class="text-center uppercase">Add New Asset</h1>
+  <div class="flex flex-wrap -mx-3 mb-6">
+    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Asset Name
+      </label>
+      <mat-form-field appearance="fill">
+
+        <mat-select [(ngModel)]=newAsset.assetName formControlName="assetName">
+
+          <mat-option *ngFor="let item of assetNames" [value]="item.assetName">{{item.assetName}} </mat-option>
+        </mat-select>
+      </mat-form-field>
+    <div *ngIf="assetName.invalid && assetName.touched || submitted">
+      <span class="error" *ngIf="assetName.errors?.required">Asset name is required</span>
+  </div>
+    </div>
+    <div class="w-full md:w-1/2 px-3">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+        Serial Number
+      </label>
+      <input  [(ngModel)]=newAsset.serialNumber minlength="5" maxlength="25" formControlName="serialNumber"
+        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        id="grid-last-name" type="text">
+        <div *ngIf="serialNumber.invalid && serialNumber.touched || submitted">
+          <span class="error" *ngIf="serialNumber.errors?.required">Serial number is required</span>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-wrap -mx-3 mb-6">
+    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Added By
+      </label>
+      <input readonly  [(ngModel)]=newAsset.addedBy
+        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white uppercase"
+        id="grid-first-name" type="text" [defaultValue]="adminDetails.adminName" placeholder={{adminDetails.adminName}}>
+
+    </div>
+    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Location
+      </label>
+        <mat-form-field appearance="fill">
+
+        <mat-select [(ngModel)]=newAsset.location formControlName="location">
+          <mat-option value="chennai">Chennai </mat-option>
+          <mat-option value="pune" >Pune</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div *ngIf="location.invalid && location.touched || submitted">
+        <span class="error" *ngIf="location.errors?.required">Location is required</span>
+    </div>
+    </div>
+  </div>
+  <div class="flex flex-wrap -mx-3 mb-6">
+
+    <div class="w-full md:w-1/2 px-3">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+Purchase Date
+</label>
+        <input [(ngModel)]=newAsset.purchaseDate formControlName="purchaseDate" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name"
+            type="Date" placeholder="Employee Id" max={{maxDate}}>
+        <div *ngIf="purchaseDate.invalid && purchaseDate.touched || submitted">
+            <span class="error" *ngIf="purchaseDate.errors?.required"> Please Select Purchase Date</span>
+        </div>
+    </div>
+    <div class="w-full md:w-1/2 px-3">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+Warranty Date
+</label>
+        <input [(ngModel)]=newAsset.warrantyDate formControlName="warrantyDate" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name"
+            type="Date" min={{minDate}}>
+        <div *ngIf="warrantyDate.invalid && warrantyDate.touched || submitted">
+            <span class="error" *ngIf="warrantyDate.errors?.required">Please Select Warranty Date</span>
+        </div>
+    </div>
+</div>
+  <div class="flex flex-wrap -mx-3 mb-6">
+    <div class="w-full md:w-1/2 px-3">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+        Model Name
+      </label>
+      <input  [(ngModel)]=newAsset.modelName formControlName="modelName"
+        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        id="grid-last-name" type="text" placeholder="Model Name">
+        <div *ngIf="modelName.invalid && modelName.touched || submitted">
+          <span class="error" *ngIf="modelName.errors?.required">Please Enter Model Name</span>
+      </div>
+    </div>
+    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Operation System
+      </label>
+      <mat-form-field appearance="fill">
+
+        <mat-select [(ngModel)]=newAsset.operatingSystem formControlName="operatingSystem" [disabled]="newAsset.assetName=='laptop'?false:true">
+
+          <mat-option value="widnows">Windows </mat-option>
+          <mat-option value="linux" >Linux</mat-option>
+          <mat-option value="macos">Mac Os</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+  </div>
+
+</form>
+
+</mat-dialog-content>
+<form  class="w-full max-w-lg ">
+    <button class="bg-green-500 hover:bg-green-700 mt-2 float-right text-white font-bold py-2 px-4 rounded-full" (click)="addAsset()">Add</button>
+    <button mat-dialog-close="true" class="bg-red-500 hover:bg-red-700 mt-2 float-left text-white font-bold py-2 px-4 rounded-full" >Cancel</button>
+</form>
+
+
+

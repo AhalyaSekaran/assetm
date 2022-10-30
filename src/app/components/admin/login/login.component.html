@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login to Continue</title>
+</head>
+<body style="background-color: #e3eded;">
+<form [formGroup]="loginGroup" [ngClass]="afterForget">
+  <div class="container">
+    <div class="brand-logo">
+    </div>
+    <div class="brand-title text-center">ASSET MANAGER</div>
+    <div class="inputs" >
+      <br>
+      <input [(ngModel)]="loginData.empId" formControlName="empId" type="text"   placeholder="Employee Id "  />
+      <div *ngIf="empId.invalid && empId.touched || logedIn">
+        <span class="error" *ngIf="empId.errors?.required">Emp Id is required</span>
+        <span class="error" *ngIf="empId.errors?.pattern">Emp id should like this V00304</span>
+    </div>
+      <br>
+      <input [(ngModel)]="loginData.password" formControlName="password"  type="password" placeholder="Password" />
+      <div *ngIf="password.invalid && password.touched || logedIn">
+        <span class="error" *ngIf="password.errors?.required">Password is required</span>
+        <!-- <span class="error" *ngIf="password.errors?.pattern">Password Must Have 8 lettors and 1 Spl charector and 1 number</span> -->
+    </div>
+    </div>
+    <button type="submit" class="mb-2" (click)="login()">LOGIN</button>
+    <a class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600 cursor-pointer" (click)="forgetPassword()">forget Password</a>
+  </div>
+</form>
+
+<!-- For Forget Password -->
+<form [formGroup]="loginGroup" class="hidden" [ngClass]="forgetClass">
+   <div class="container">
+
+    <div class="brand-title text-center">Forget Passord</div>
+
+
+    <mat-vertical-stepper [linear]="false" #stepper>
+      <!-- Step 1 -->
+      <mat-step [stepControl]="empIdGroup">
+        <form class="mt-4" [formGroup]="empIdGroup">
+          <ng-template matStepLabel>Fill Emp Id</ng-template>
+          <input matInput autofocus  [(ngModel)]="adminId" class="block w-80 bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" formControlName="empId2" type="text"   />
+          <div *ngIf="empId.invalid && empId2.touched || isOk">
+            <span class="error" *ngIf="empId2.errors?.required">Emp Id is required</span>
+            <span class="error" *ngIf="empId2.errors?.pattern">Emp id should like this V00304</span>
+        </div>
+          <div [ngClass]="{'hidden': isDisable}">
+              <button  class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" (click)="findAdmin()"> Next &nbsp; <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+       </form>
+      </mat-step>
+
+      <!-- Step 2 -->
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup" >
+          <ng-template matStepLabel>Enter OTP</ng-template>
+          <input matInput autofocus   [(ngModel)]="otPas"  class="block w-80 bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" formControlName="otPas" type="text"   />
+          <div>
+
+            <a  class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600 cursor-pointer" (click)="goback()" >Request for new OTP</a>
+            <div>
+              <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" (click)="findAdminByOTP()"  > Next &nbsp; <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </form>
+      </mat-step>
+       <!-- Step 3 -->
+      <mat-step label="Create Password" [stepControl]="secondFormGroup" state="formdata">
+        <form [formGroup]="thirdFormGroup" class="mt-4" >
+            <div class="flex flex-wrap -mx-3 "  >
+
+                  <input formControlName="password2" [(ngModel)]="VerifyPasswd"  class="block w-80 bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-last-name" type="password"  >
+                  <div class="error" *ngIf="thirdFormGroup.get('password2').invalid && (thirdFormGroup.get('password2').touched || thirdFormGroup.get('password2').dirty)">
+                    <div *ngIf="thirdFormGroup.get('password2').hasError('required')">
+                      password is required
+                    </div>
+                    </div>
+               <button (click)="Comp()" class="bg-green-500 hover:bg-green-700 mt-2 float-right text-white font-bold py-2 px-4 rounded-full">
+                Finish
+            </button>
+             </div>
+        </form>
+    </mat-step>
+    </mat-vertical-stepper>
+   </div>
+</form>
+</body>
+</html>

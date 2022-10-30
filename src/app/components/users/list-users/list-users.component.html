@@ -1,0 +1,114 @@
+
+<link
+href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+rel="stylesheet"
+/>
+<div class="flex w-auto min-h-screen bg-white">
+<div class="col-span-10 table-contents">
+  <div class="overflow-auto lg:overflow-visible">
+    <div class="flex lg:justify-between border-b-2 border-fuchsia-900 pb-1">
+      <button (click)="addUser()" [ngClass]="{'hidden':adminDetails.access=='ReadWrite'?false:true}"  class="bg-gray-300 text-blue-700 hover:text-green-700 font-semibold py-2 px-2 rounded-2 inline-flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill w-5 h-5" viewBox="0 0 16 16">
+            <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+            <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+          </svg>
+          Add Employee
+      </button>
+      <div class="text-center flex-auto">
+        <input [(ngModel)]="searchTerm"
+          type="text"
+          name="name"
+          placeholder="Search..."
+          class="
+            w-1/3
+            py-2
+            border-b-2 border-blue-600
+            outline-none
+            focus:border-yellow-400
+          "
+        />
+      </div>
+      <div>
+
+          <button
+            class="
+              bg-blue-500
+              hover:bg-blue-700
+              text-white
+              py-1
+              px-3
+              sm
+              rounded-full
+            "
+            (click)="activeUSers()"
+          >
+            Active
+          </button>
+          <button
+          class="
+            bg-blue-500
+            hover:bg-blue-700
+            text-white
+            py-1
+            px-3
+            sm
+            rounded-full
+          "
+          (click)="inactive()"
+        >
+          InActive
+        </button>
+        
+
+      </div>
+    </div>
+    <table matSort (matSortChange)="sortData($event)" matSortclass="table flex-auto text-gray-400 w-full border-separate space-y-4 text-sm-center">
+      <thead class="bg-gray-300 text-black">
+        <tr >
+          <th mat-sort-header="empId" class="p-3">Id</th>
+          <th mat-sort-header="Name" class="p-3 text-left">Name</th>
+          <!-- <th  mat-sort-header="Mail" class="p-3 text-left">Mail</th> -->
+          <th mat-sort-header="Phone" class="p-3 text-left">Mobile</th>
+          <th mat-sort-header="Designation" class="p-3 text-left">Designation</th>
+          <th mat-sort-header="Department" class="p-3 text-left">Department</th>
+          <th mat-sort-header="Location" class="p-3 text-left">Location</th>
+          <th mat-sort-header="Status" class="p-3 text-left">Status</th>
+          <th  class="p-3 text-left">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr  *ngFor="let emp of sortedData |filter: searchTerm | paginate:{itemsPerPage:count,currentPage:page}"  class="hover:bg-gradient-to-r from-sky-300 to-cyan-400 cursor-default">
+          <td class="p-3">{{emp.empId}}</td>
+          <td class="p-3 font-medium capitalize">{{emp.firstName}} {{emp.lastName}}</td>
+          <!-- <td class="p-3">{{emp.mail}}</td> -->
+          <td class="p-3">{{emp.mobile}}</td>
+          <td class="p-3 uppercase">{{emp.designation}}</td>
+          <td class="p-3 uppercase">{{emp.department}}</td>
+          <td>{{emp.location}}</td>
+
+          <td class="p-3">
+            <span class="text-uppercase text-gray-50 rounded-md px-1" [ngClass]="{'bg-green-400 text-Black-600': (emp.status).toUpperCase() === 'ACTIVE', 'bg-red-400 text-Black-600' : (emp.status).toUpperCase() === 'INACTIVE'}"
+              >{{emp.status}}</span
+            >
+          </td>
+          <td class="p-3">
+            <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+              <svg [ngClass]="{'hidden': (emp.status).toUpperCase()=='INACTIVE'}" (click)="deleteEmp(emp.empId)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-x" viewBox="0 0 16 16">
+                <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                <path fill-rule="evenodd" d="M12.146 5.146a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"/>
+              </svg>
+          </div>
+          </td>
+
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div>
+<footer>
+  <pagination-controls (pageChange)="page= $event" ></pagination-controls>
+    </footer>
+

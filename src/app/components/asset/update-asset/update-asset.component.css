@@ -1,0 +1,11 @@
+.cancel
+  {
+    background-color: red;
+    position: relative;
+    left: 60%;
+  }
+  .cancel:hover
+  {
+    background-color: rgb(148, 9, 9);
+    
+  }

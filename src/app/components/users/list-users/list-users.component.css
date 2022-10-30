@@ -1,0 +1,31 @@
+.table {
+    border-spacing: 0 15px;
+  }
+
+  i {
+    font-size: 1rem !important;
+  }
+
+  .table tr {
+    border-radius: 20px;
+  }
+
+
+.table-contents
+{
+    width: 100%;
+    /* padding-bottom: 20px; */
+    margin-top: 2%;
+}
+/* .tbl-row:hover
+{
+color: aliceblue;
+background: rgb(81, 79, 79);
+} */
+.green-bg
+{
+background: green;
+}
+.red-bg{
+background: red;
+}
